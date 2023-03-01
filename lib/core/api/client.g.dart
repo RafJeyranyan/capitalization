@@ -12,11 +12,36 @@ class _MainApi implements MainApi {
   _MainApi(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'https://www.alphavantage.co';
+  }
 
   final Dio _dio;
 
   String? baseUrl;
+
+  @override
+  Future<Company?> getCompanyBySymbol(symbol) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result =
+        await _dio.fetch<Map<String, dynamic>?>(_setStreamType<Company>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/query?function=OVERVIEW&symbol=${symbol}&apikey=ERG1T2PZ0CUIXK91',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data == null ? null : Company.fromJson(_result.data!);
+    return value;
+  }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&

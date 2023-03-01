@@ -7,11 +7,13 @@ part of 'entities.dart';
 // **************************************************************************
 
 Company _$CompanyFromJson(Map<String, dynamic> json) => Company(
-      name: json['name'] as String?,
-      marketCapitalization: json['marketCapitalization'] as String?,
+      Name: json['Name'] as String?,
+      MarketCapitalization: json['MarketCapitalization'] as String?,
+      Symbol: json['Symbol'] as String?,
     );
 
 Map<String, dynamic> _$CompanyToJson(Company instance) => <String, dynamic>{
-      'name': instance.name,
-      'marketCapitalization': instance.marketCapitalization,
+      'Name': instance.Name,
+      'MarketCapitalization': instance.MarketCapitalization,
+      'Symbol': instance.Symbol,
     };

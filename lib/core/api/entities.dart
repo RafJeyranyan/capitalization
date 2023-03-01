@@ -4,12 +4,14 @@ part 'entities.g.dart';
 
 @JsonSerializable()
 class Company {
-  String? name;
-  String? marketCapitalization;
+  String? Name;
+  String? MarketCapitalization;
+  String? Symbol;
 
   Company({
-    this.name,
-    this.marketCapitalization,
+    this.Name,
+    this.MarketCapitalization,
+    this.Symbol,
 });
 
 

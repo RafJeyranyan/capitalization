@@ -26,13 +26,7 @@ class MyApp extends StatelessWidget {
       ],
       // child: KonanicScreen(),
       child: SafeArea(
-        child: BlocBuilder<MainCubit,MainState>(
-          builder: (context,state){
-            return Center(
-              child: Text(""),
-            );
-          },
-        )
+        child: HomeScreen()
       ),
     ));
   }
