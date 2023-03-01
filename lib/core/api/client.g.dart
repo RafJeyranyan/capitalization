@@ -12,9 +12,7 @@ class _MainApi implements MainApi {
   _MainApi(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'https://www.alphavantage.co';
-  }
+  });
 
   final Dio _dio;
 
@@ -34,7 +32,7 @@ class _MainApi implements MainApi {
     )
             .compose(
               _dio.options,
-              '/query?function=OVERVIEW&symbol=${symbol}&apikey=ERG1T2PZ0CUIXK91',
+              'https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=ERG1T2PZ0CUIXK91',
               queryParameters: queryParameters,
               data: _data,
             )

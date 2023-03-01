@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
         return Scaffold(
-            backgroundColor: AppColors.background,
+            backgroundColor: AppColors.greenBackGround,
             body: state.stage == MainStateStage.loading
                 ? const Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(

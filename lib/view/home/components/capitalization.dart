@@ -3,6 +3,7 @@ import 'package:tn/core/style.dart';
 
 import '../../../components/add_dot.dart';
 import '../../../core/api/entities.dart';
+import '../../company_info/company_info_screen.dart';
 
 class Capitalization extends StatelessWidget {
   final List<Company?> companies;
@@ -46,13 +47,25 @@ class CapitalizationInfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      color: AppColors.content,
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.content,
+          foregroundColor: Colors.white,
+          elevation: 0),
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) {
+            return CompanyInfo(
+              company: company!,
+            );
+          }),
+        );
+      },
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
+            margin: const EdgeInsets.symmetric(vertical: 8.0),
             width: size.width * 0.1,
             height: size.width * 0.1,
             color: prefixColor,
@@ -62,20 +75,27 @@ class CapitalizationInfoRow extends StatelessWidget {
               style: AppTextStyle.defaultTextStyle,
             )),
           ),
-          Text(
-            company?.Name ?? "Unknown",
-            style: AppTextStyle.contentLarge,
-            overflow: TextOverflow.ellipsis,
+          Container(
+            width: size.width * 0.3,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              company?.Name ?? "Unknown",
+              style: AppTextStyle.contentLarge,
+              maxLines: 2,
+              overflow: TextOverflow.visible,
+            ),
           ),
-          Text(
-            "${addDots(company?.MarketCapitalization ?? "0")} \$",
-            style: AppTextStyle.contentSmall,
-            overflow: TextOverflow.ellipsis,
-
+          Container(
+            width: size.width * 0.35,
+            alignment: Alignment.centerRight,
+            child: Text(
+              "${addDots(company?.MarketCapitalization ?? "0")} \$",
+              style: AppTextStyle.contentSmall,
+              overflow: TextOverflow.visible,
+            ),
           ),
         ],
       ),
     );
   }
 }
-

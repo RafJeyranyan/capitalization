@@ -1,5 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:tn/view/company_info/company_info_screen.dart';
 
 import '../../../core/api/entities.dart';
 import '../../../core/style.dart';
@@ -20,15 +22,22 @@ class Pie extends StatelessWidget {
         child: PieChart(
           PieChartData(
             pieTouchData: PieTouchData(
-              touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                if (pieTouchResponse == null ||
-                    pieTouchResponse.touchedSection == null ||
-                    pieTouchResponse.touchedSection!.touchedSectionIndex < 0) {
-                  return;
-                }
-
-                print(pieTouchResponse.touchedSection!.touchedSectionIndex);
-              },
+              // touchCallback: (FlTouchEvent event, pieTouchResponse) {
+              //   print(event.isInterestedForInteractions);
+              //   if (pieTouchResponse == null ||
+              //       pieTouchResponse.touchedSection == null ||
+              //       pieTouchResponse.touchedSection!.touchedSectionIndex < 0) {
+              //     return;
+              //   }
+              //   Navigator.of(context).push(
+              //     MaterialPageRoute(builder: (context) {
+              //       return CompanyInfo(
+              //         company: companies[pieTouchResponse
+              //             .touchedSection!.touchedSectionIndex]!,
+              //       );
+              //     }),
+              //   );
+              // },
             ),
             sectionsSpace: 0,
             centerSpaceRadius: 0,
@@ -39,8 +48,8 @@ class Pie extends StatelessWidget {
                     titleStyle: AppTextStyle.numbers,
                     titlePositionPercentageOffset: 0.8,
                     radius: size.width * 0.3,
-                    value: double.parse(
-                        companies[i]?.MarketCapitalization ?? "0"),
+                    value:
+                        double.parse(companies[i]?.MarketCapitalization ?? "0"),
                     color: AppColors.PieColors[i],
                     borderSide: const BorderSide(width: 1.0))
             ],
