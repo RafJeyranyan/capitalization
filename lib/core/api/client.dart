@@ -1,8 +1,9 @@
-import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 import 'package:tn/core/api/entities.dart';
 
 import '../../configs.dart';
+
 part 'client.g.dart';
 
 @RestApi()
