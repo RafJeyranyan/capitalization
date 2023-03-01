@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tn/view/company_info/company_info_screen.dart';
 
 import '../../../core/api/entities.dart';
 import '../../../core/style.dart';

@@ -8,12 +8,14 @@ class Company {
   String? MarketCapitalization;
   String? Symbol;
   String? Description;
+  String? Note;
 
   Company({
     this.Name,
     this.MarketCapitalization,
     this.Symbol,
     this.Description,
+    this.Note,
 });
 
 

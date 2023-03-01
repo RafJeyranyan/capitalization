@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,17 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => MainCubit(mainApi: MainApi(Dio())),
-        )
-      ],
-      // child: KonanicScreen(),
-      child: SafeArea(
-        child: HomeScreen()
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => MainCubit(mainApi: MainApi(Dio())),
+          )
+        ],
+        child: const HomeScreen(),
       ),
-    ));
+    );
   }
 }
-

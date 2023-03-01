@@ -10,32 +10,36 @@ class MainCubit extends Cubit<MainState> {
 
   MainCubit({
     required this.mainApi,
-  }) : super(MainState(
-      stage: MainStateStage.loading,
-      mainApi: mainApi
-  )) {
-   load();
+  }) : super(MainState(stage: MainStateStage.loading, mainApi: mainApi)) {
+    load();
   }
 
   load() async {
-      List<Company> tmp = [];
-     for (var element in companySymbols)  {
+    bool error = false;
+    List<Company> tmp = [];
+    for (var element in companySymbols) {
       await mainApi.getCompanyBySymbol(element).then((value) {
         if (value != null) {
+          if (value.Note != null) {
+            error = true;
+            return;
+          }
           tmp.add(value);
         }
       });
-
     }
-    emit(state.copyWith(stage: MainStateStage.display,companies: tmp));
+    if (error) {
+      emit(state.copyWith(stage: MainStateStage.error));
+    } else {
+      emit(state.copyWith(stage: MainStateStage.display, companies: tmp));
+    }
   }
-
 }
-
 
 enum MainStateStage {
   loading,
   display,
+  error,
 }
 
 class MainState extends Equatable {
@@ -47,24 +51,22 @@ class MainState extends Equatable {
     required this.stage,
     required this.mainApi,
     this.companies = const [],
-
   });
 
   MainState copyWith({
     MainStateStage? stage,
     MainApi? mainApi,
     List<Company?>? companies,
-
   }) {
     return MainState(
       stage: stage ?? this.stage,
       mainApi: mainApi ?? this.mainApi,
       companies: companies ?? this.companies,
-
-
     );
   }
 
   @override
-  List<Object?> get props => [stage,];
+  List<Object?> get props => [
+        stage,
+      ];
 }

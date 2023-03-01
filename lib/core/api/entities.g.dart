@@ -11,6 +11,7 @@ Company _$CompanyFromJson(Map<String, dynamic> json) => Company(
       MarketCapitalization: json['MarketCapitalization'] as String?,
       Symbol: json['Symbol'] as String?,
       Description: json['Description'] as String?,
+      Note: json['Note'] as String?,
     );
 
 Map<String, dynamic> _$CompanyToJson(Company instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$CompanyToJson(Company instance) => <String, dynamic>{
       'MarketCapitalization': instance.MarketCapitalization,
       'Symbol': instance.Symbol,
       'Description': instance.Description,
+      'Note': instance.Note,
     };
